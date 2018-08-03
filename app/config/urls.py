@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from members.apis import AuthToken, AuthenticationTest
 from . import views
 from posts.apis import PostList
 
@@ -28,6 +29,8 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('api/posts/', PostList.as_view()),
+    path('api/members/auth-token/', AuthToken.as_view()),
+    path('api/members/auth-test/', AuthenticationTest.as_view()),
 ] + static(
         prefix=settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT,
